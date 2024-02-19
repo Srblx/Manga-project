@@ -1,0 +1,24 @@
+*{
+    box-sizing: border-box;
+    list-style-type: none;
+}
+
+html, body {
+    margin: 0;
+    background-color: #f4e2e2;
+}
+
+h1{
+    color: rgb(39, 39, 39);
+    text-align: center;
+    font-size: 42px;
+}
+
+img{
+    border: #132141 solid 3px;
+    border-radius: 10px;
+}
+
+card{
+    border: black solid 3px;
+}

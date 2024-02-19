@@ -1,0 +1,13 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.tsx'
+import './css/index.css'
+// import { PageNumberProvider } from './utils/PageNumberProvider.tsx'
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  <React.StrictMode>
+    {/* <PageNumberProvider> */}
+    <App />
+    {/* </PageNumberProvider> */}
+  </React.StrictMode>,
+)
