@@ -1,14 +1,12 @@
 import Drawer from "@mui/material/Drawer";
 import RemoveIcon from "@mui/icons-material/Remove";
 import { useShoppingCart } from "../context/ShoppingCartContext";
-import { useEffect, useState } from "react";
 import { IconButton, Stack, styled } from "@mui/material";
 import { formatCurrency } from "../utils/FormatCurrency";
 import { MangaModel } from "../interfaces/MangaModelInterface";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
-import FetchAndDisplayMangaList from "../screens/MangaList";
 import { useQuery } from "@tanstack/react-query";
 
 type ShoppingCartProps = {
@@ -27,20 +25,14 @@ const StyledIconButton = styled(IconButton)({
   },
 });
 
-interface CartItemWithQuantity extends MangaModel {
-  quantity: number;
-}
-
 export function DrawerCart({ openCart, closeCart }: ShoppingCartProps) {
   const {
     cartItemsType,
     removeFormCart,
     increaseCartQuantity,
     decreaseCartQuantity,
-    populateManga,
   } = useShoppingCart();
   const price = 19.98;
-  const [prevCartItemsLength, setPrevCartItemsLength] = useState<number>(0);
   let total = 0;
   let totalCart = 0;
 
@@ -102,7 +94,7 @@ export function DrawerCart({ openCart, closeCart }: ShoppingCartProps) {
             background: "red",
             width: "100%",
             borderRadius: "0px 0px 10px 10px",
-            padding: "5px 0px 5px 0px",
+            padding: "65px 0px 5px 0px",
           }}
           onClick={closeCart}
         >
@@ -200,7 +192,7 @@ export function DrawerCart({ openCart, closeCart }: ShoppingCartProps) {
         >
           Total cart : {totalCart.toFixed(2)}
         </p>
-      </Stack>
+      </Stack> 
     </Drawer>
   );
   // nav bar cacche scrooll down et display scrool upp / btn scroll up / Not scroll up more quantity 

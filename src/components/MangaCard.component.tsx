@@ -139,7 +139,6 @@ function MangaCard({ manga, price }: MangaItemProps) {
         <StyledStackForAddToCart direction="row" spacing={2}>
           {quantity === 0 ? (
             <StyledButtonAddToCart
-              // variant="contained":
               onClick={handleAddToCartClick}
               startIcon={<AddShoppingCartIcon />}
               size="small"

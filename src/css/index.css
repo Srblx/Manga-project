@@ -5,7 +5,10 @@
 
 html, body {
     margin: 0;
-    background-color: #f4e2e2;
+    background-image: url(../assets/1184726.jpg);
+    background-size: cover;
+    /* background-repeat: no-repeat; */
+    height: 100dvh;
 }
 
 h1{

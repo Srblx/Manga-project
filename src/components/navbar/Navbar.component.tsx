@@ -4,9 +4,11 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { useShoppingCart } from "../context/ShoppingCartContext";
-import { useState } from "react";
-import { DrawerCart } from "./DrawerShoppingCart.component";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
+import { useEffect, useState } from "react";
+import { DrawerCart } from "../DrawerShoppingCart.component";
+import TextField from "@mui/material/TextField";
+import SearchIcon from "@mui/icons-material/Search";
 
 const StyledDiv = styled("div")({
   background: "#d34040",
@@ -26,22 +28,61 @@ const StyledDiv = styled("div")({
 
 export default function CustomNavbar() {
   const { openCart, cartQuantity } = useShoppingCart();
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
+  const [visible, setVisible] = useState(true);
 
-  const handleCartClick = () => {
-    setIsOpen(true);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+      setPrevScrollPos(currentScrollPos);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos]);
 
   const handleCloseCart = () => {
     setIsOpen(false);
   };
+
   return (
-    <Box sx={{ flexGrow: 1 , position: "fixed", top: "0", width: "100%", height: "80px"}}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        position: "fixed",
+        width: "100%",
+        height: "80px",
+        zIndex: "9999",
+        transition: "top 0.3s",
+        ...(visible ? { top: 0 } : { top: "-80px" }),
+      }}
+    >
       <AppBar position="static">
         <Toolbar sx={{ background: "#232529" }}>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Home
           </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "flex-end",
+              background: "white",
+              border: "#2B7BD4",
+              borderRadius: "15px",
+              marginRight: ".5rem",
+              width: "25%",
+            }}
+          >
+            <SearchIcon sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+            <TextField
+              id="input-with-sx"
+              label="Search a manga by title"
+              variant="standard"
+              sx={{ width: "100%" }}
+            />
+          </Box>
           <Button
             color="inherit"
             sx={{ margin: "10px" }}
@@ -67,7 +108,11 @@ export default function CustomNavbar() {
             </svg>
             <StyledDiv>{cartQuantity}</StyledDiv>
           </Button>
-          <DrawerCart openCart={isOpen}  closeCart={handleCloseCart} key={Math.random()}/>
+          <DrawerCart
+            openCart={isOpen}
+            closeCart={handleCloseCart}
+            key={Math.random()}
+          />
         </Toolbar>
       </AppBar>
     </Box>
