@@ -28,7 +28,7 @@ export function CircularColor() {
 
 export function LoadingDisplayManga() {
   return (
-    <Box sx={{ padding: "10px 30px" }}>
+    <Box sx={{ padding: "10px 30px", marginTop: "85px" }}>
       <StyledCustomStackForLoading>
         <CircularColor />
       </StyledCustomStackForLoading>

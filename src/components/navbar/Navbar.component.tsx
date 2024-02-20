@@ -7,8 +7,8 @@ import Button from "@mui/material/Button";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { useEffect, useState } from "react";
 import { DrawerCart } from "../DrawerShoppingCart.component";
-import TextField from "@mui/material/TextField";
-import SearchIcon from "@mui/icons-material/Search";
+// import TextField from "@mui/material/TextField";
+// import SearchIcon from "@mui/icons-material/Search";
 
 const StyledDiv = styled("div")({
   background: "#d34040",
@@ -31,6 +31,7 @@ export default function CustomNavbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
   const [visible, setVisible] = useState(true);
+  // const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,6 +47,11 @@ export default function CustomNavbar() {
   const handleCloseCart = () => {
     setIsOpen(false);
   };
+
+  // const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setSearchValue(event.target.value);
+  //   console.log('event : ', event.target.value);
+  // }
 
   return (
     <Box
@@ -64,7 +70,7 @@ export default function CustomNavbar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Home
           </Typography>
-          <Box
+          {/* <Box
             sx={{
               display: "flex",
               alignItems: "flex-end",
@@ -81,8 +87,9 @@ export default function CustomNavbar() {
               label="Search a manga by title"
               variant="standard"
               sx={{ width: "100%" }}
+              onChange={handleSearchChange}
             />
-          </Box>
+          </Box> */}
           <Button
             color="inherit"
             sx={{ margin: "10px" }}
